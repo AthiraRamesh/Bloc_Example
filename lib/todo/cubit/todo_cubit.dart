@@ -9,7 +9,12 @@ class TodoCubit extends Cubit<TodoState> {
 
   Future<void> fetchTodo() async {
     emit(LoadingTodoState());
-    final response = await _repository.getAll();
-    emit(ResponseTodoState(response));
+    try {
+      final response = await _repository.getAll();
+
+      emit(ResponseTodoState(response));
+    } catch (e) {
+      emit(ErrorTodoState(e.toString()));
+    }
   }
 }
