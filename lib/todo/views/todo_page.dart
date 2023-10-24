@@ -32,7 +32,18 @@ class _TodoPageState extends State<TodoPage> {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is ResponseTodoState) {}
+          } else if (state is ResponseTodoState) {
+            final todos = state.todos;
+            return ListView.builder(
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                final todo = todos[index];
+                return ListTile(
+                  title: Text(todo.title),
+                );
+              },
+            );
+          }
           return Center(child: Text(state.toString()));
         },
       ),
