@@ -43,6 +43,8 @@ class _TodoPageState extends State<TodoPage> {
                 );
               },
             );
+          } else if (state is ErrorTodoState) {
+            return Text(state.message);
           }
           return Center(child: Text(state.toString()));
         },
