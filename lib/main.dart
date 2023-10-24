@@ -1,4 +1,4 @@
-import 'package:bloc_example/features/posts/ui/posts_page.dart';
+import 'package:bloc_example/todo/views/todo_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PostPage(),
+      home: TodoPage(),
     );
   }
 }
