@@ -13,8 +13,11 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final cubit = context.read<TodoCubit>();
+      cubit.fetchTodo();
+    });
   }
 
   @override
@@ -25,12 +28,12 @@ class _TodoPageState extends State<TodoPage> {
       ),
       body: BlocBuilder<TodoCubit, TodoState>(
         builder: (context, state) {
-          if (state is InitTodoState) {
+          if (state is InitTodoState || state is LoadingTodoState) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          }
-          return Text(state.toString());
+          } else if (state is ResponseTodoState) {}
+          return Center(child: Text(state.toString()));
         },
       ),
     );
